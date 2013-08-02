@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div id="items">
-		<div id="search"><form><input type="text" placeholder="Search" /></form></div>
+		<div id="search"><input type="text" placeholder="Search" value="" /></div>
 		<div id="itemlist"><ul></ul></div>
 	</div>
 	<div id="craftingbench">
@@ -40,7 +40,6 @@
 
 		var interval = null;
 		var rotation = 0;
-
 		$(document).ready(function(){
 			$.get("/minecraft_items.json", function(data)
 			{
@@ -79,6 +78,22 @@
 				rotation = rotation + 1;
 			}
 		}
+		$("#search input").on("keyup", function(e){
+			e.preventDefault;
+			var value = $(this).val();
+
+			$("#itemlist ul").empty();
+
+			var reg = new RegExp(value, "i"); 
+
+			for(i in allItems)
+			{
+				if(reg.test(allItems[i][1]))
+				{
+					$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+'</li>');
+				}
+			}
+		});
 		$("#items #itemlist").on("click", "li", function(){
 			var item = $(this);
 			var IID = item.attr("id");

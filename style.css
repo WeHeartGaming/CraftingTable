@@ -51,13 +51,7 @@ body
 	float: right;
 }
 
-#items form
-{
-	width: 100%;
-	padding: 0;
-	margin: 0;
-}
-	#items form input
+	#items input
 	{
 		display: block;
 		width: 300px;
