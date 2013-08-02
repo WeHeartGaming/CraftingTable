@@ -56,6 +56,9 @@
 				allRecipes = data;
 			}, "json");
 
+			var listheight = $(window).height() - 119;
+			$("#itemlist").css("height", listheight);
+
 		});
 		function switchRecipes()
 		{
@@ -101,6 +104,11 @@
 			{
 				switchRecipes();
 			}
+		});
+		$(window).on("resize", function(){
+			$("#itemlist").css("height", "0px");
+			var listheight = $(window).height() - 119;
+			$("#itemlist").css("height", listheight+"px");
 		});
 	</script>
 </body>
