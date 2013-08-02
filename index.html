@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>Crafting</title>
+	<link href="/style.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="/jquery.js"></script>
+</head>
+<body>
+	<div id="items">
+		<div id="search"><form><input type="text" placeholder="Search" /></form></div>
+		<div id="itemlist"><ul></ul></div>
+	</div>
+	<div id="craftingbench">
+		<h1>Craftbench</h1>
+		<div id="bench">
+			<div id="b0"></div>
+			<div id="b1"></div>
+			<div id="b2"></div>
+			<div id="b3"></div>
+			<div id="b4"></div>
+			<div id="b5"></div>
+			<div id="b6"></div>
+			<div id="b7"></div>
+			<div id="b8"></div>
+		</div>
+		<div id="crafted"></div>
+	</div>
+	<div id="furnace">
+		<h1>Furnace</h1>
+		<div id="uncooked"></div>
+		<div id="cooked"></div>
+	</div>
+	<div id="footer">Created by Dan Audne &copy; 2013</div>
+	<script type="text/javascript">
+		var allItems = {};
+		var allRecipes = {};
+
+		var currentRecipe = {};
+
+		var interval = null;
+		var rotation = 0;
+
+		$(document).ready(function(){
+			$.get("/minecraft_items.json", function(data)
+			{
+				allItems = data;
+				for(i in data)
+				{
+					$("#itemlist ul").append('<li id="'+data[i][0]+'">'+data[i][1]+'</li>');
+				}
+			}, "json");
+
+			$.get("/minecraft_recipes.json", function(data)
+			{
+				allRecipes = data;
+			}, "json");
+
+		});
+		function switchRecipes()
+		{
+			$("#bench div").empty();
+
+			for(var i = 0; i <= 8; i++)
+			{
+				if(currentRecipe[rotation][i] != 0)
+				{
+					$("#bench #b"+i).append('<img src="/images_minecraft/'+currentRecipe[rotation][i]+'.png" alt= />');
+				}
+			}
+			if(currentRecipe.length -1 <= rotation)
+			{
+				rotation = 0;
+			}
+			else
+			{
+				rotation = rotation + 1;
+			}
+		}
+		$("#items #itemlist").on("click", "li", function(){
+			var item = $(this);
+			var IID = item.attr("id");
+			var table = $("#craftingbench #crafted");
+
+			$("#bench div").empty();
+			table.empty();
+
+			table.append('<img src="/images_minecraft/'+IID+'.png" alt= />');
+
+			currentRecipe = allRecipes[IID];
+
+			rotation = 0;
+			switchRecipes();
+			clearInterval(interval);
+			
+			if(currentRecipe.length > 1)
+			{
+				clearInterval(interval);
+				interval = setInterval(switchRecipes, 2000);
+			}
+			else
+			{
+				switchRecipes();
+			}
+		});
+	</script>
+</body>
+</html>

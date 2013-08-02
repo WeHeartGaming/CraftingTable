@@ -1,0 +1,87 @@
+body
+{
+	background: #e5e5e5;
+	padding: 0;
+	margin: 0;
+}
+
+#craftingbench
+{
+	background: #fff;
+	padding: 20px;
+	box-shadow: 0 1px 0 #ccc;
+	margin-right: 320px
+}
+	#craftingbench #crafted,
+	#bench div
+	{
+		padding: 10px;
+		background: #ddd;
+		width: 50px;
+		height: 50px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		float: left;
+	}
+	#bench div:nth-child(3n+1)
+	{
+		clear:left;
+	}
+		#craftingbench #crafted img,
+		#bench div img
+		{
+			width: 100%;
+		}
+	#furnace
+	{
+
+	}
+		#furnace #uncooked
+		{
+
+		}
+		#furnace #cooked
+		{
+			
+		}
+#items
+{
+	width: 300px;
+	background: #fff;
+	float: right;
+}
+
+#items form
+{
+	width: 100%;
+}
+	#items form input
+	{
+		display: block;
+		width: 300px;
+		padding: 20px 20px;
+		line-height: 30px;
+		height: 30px;
+		border: none;
+		font-size: 120%;
+		border-bottom: 1px solid #ccc;
+	}
+
+#itemlist
+{
+	padding: 20px;
+}
+	#itemlist ul
+	{
+		padding: 0;
+		margin: 0;
+	}
+
+#footer
+{
+	clear: both;
+	background: #fff;
+	margin-top: 20px;
+	padding: 20px;
+	text-align: center;
+}
