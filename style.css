@@ -54,6 +54,8 @@ body
 #items form
 {
 	width: 100%;
+	padding: 0;
+	margin: 0;
 }
 	#items form input
 	{
@@ -61,21 +63,35 @@ body
 		width: 300px;
 		padding: 20px 20px;
 		line-height: 30px;
-		height: 30px;
+		height: 60px;
 		border: none;
-		font-size: 120%;
+		font-size: 150%;
 		border-bottom: 1px solid #ccc;
 	}
 
 #itemlist
 {
-	padding: 20px;
+	max-height: 100%;
+	overflow: auto;
 }
 	#itemlist ul
 	{
 		padding: 0;
 		margin: 0;
+		list-style: none;
 	}
+		#itemlist ul li
+		{
+			padding: 10px;
+			border-bottom: 1px solid #ccc;
+			line-height: 30px;
+		}
+			#itemlist ul li img
+			{
+				width: 30px;
+				padding-right: 10px;
+				vertical-align: middle;
+			}
 
 #footer
 {

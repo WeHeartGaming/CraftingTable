@@ -12,15 +12,15 @@
 	<div id="craftingbench">
 		<h1>Craftbench</h1>
 		<div id="bench">
-			<div id="b0"></div>
-			<div id="b1"></div>
-			<div id="b2"></div>
-			<div id="b3"></div>
-			<div id="b4"></div>
-			<div id="b5"></div>
-			<div id="b6"></div>
-			<div id="b7"></div>
-			<div id="b8"></div>
+			<div id="b0"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b1"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b2"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b3"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b4"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b5"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b6"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b7"><img src="/images_minecraft/0.png" alt= /></div>
+			<div id="b8"><img src="/images_minecraft/0.png" alt= /></div>
 		</div>
 		<div id="crafted"></div>
 	</div>
@@ -45,7 +45,7 @@
 				allItems = data;
 				for(i in data)
 				{
-					$("#itemlist ul").append('<li id="'+data[i][0]+'">'+data[i][1]+'</li>');
+					$("#itemlist ul").append('<li id="'+data[i][0]+'"><img src="/images_minecraft/'+data[i][0]+'.png" alt="'+data[i][1]+'" />'+data[i][1]+'</li>');
 				}
 			}, "json");
 
@@ -57,13 +57,12 @@
 		});
 		function switchRecipes()
 		{
-			$("#bench div").empty();
 
 			for(var i = 0; i <= 8; i++)
 			{
 				if(currentRecipe[rotation][i] != 0)
 				{
-					$("#bench #b"+i).append('<img src="/images_minecraft/'+currentRecipe[rotation][i]+'.png" alt= />');
+					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png');
 				}
 			}
 			if(currentRecipe.length -1 <= rotation)
@@ -80,7 +79,7 @@
 			var IID = item.attr("id");
 			var table = $("#craftingbench #crafted");
 
-			$("#bench div").empty();
+			$("#bench div img").attr("src", '/images_minecraft/0.png')
 			table.empty();
 
 			table.append('<img src="/images_minecraft/'+IID+'.png" alt= />');
