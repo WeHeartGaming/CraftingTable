@@ -85,6 +85,10 @@ body
 				padding-right: 10px;
 				vertical-align: middle;
 			}
+			#itemlist ul li span
+			{
+				font-size: 12px;
+			}
 
 #footer
 {

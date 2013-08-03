@@ -46,7 +46,7 @@
 				allItems = data;
 				for(i in data)
 				{
-					$("#itemlist ul").append('<li id="'+data[i][0]+'"><img src="/images_minecraft/'+data[i][0]+'.png" alt="'+data[i][1]+'" />'+data[i][1]+'</li>');
+					$("#itemlist ul").append('<li id="'+data[i][0]+'"><img src="/images_minecraft/'+data[i][0]+'.png" alt="'+data[i][1]+'" />'+data[i][1]+' <span>(id: '+data[i][0]+')</span></li>');
 				}
 			}, "json");
 
@@ -90,7 +90,7 @@
 			{
 				if(reg.test(allItems[i][1]))
 				{
-					$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+'</li>');
+					$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
 				}
 			}
 		});
