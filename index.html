@@ -9,29 +9,32 @@
 		<div id="search"><input type="text" placeholder="Search" value="" /></div>
 		<div id="itemlist"><ul></ul></div>
 	</div>
-	<div id="craftingbench">
-		<h1>Crafting Table</h1>
-		<div id="bench">
-			<div id="b0"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b1"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b2"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b3"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b4"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b5"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b6"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b7"><img src="/images_minecraft/0.png" alt= /></div>
-			<div id="b8"><img src="/images_minecraft/0.png" alt= /></div>
+	<div id="left">
+		<header><h1>WeHeartGaming | Minecraft Item list and Crafting guid</h1></header>
+		<div id="craftingbench">
+			<h1>Crafting Table</h1>
+			<div id="bench">
+				<div id="b0"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b1"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b2"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b3"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b4"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b5"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b6"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b7"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b8"><img src="/images_minecraft/0.png" alt= /></div>
+			</div>
+			<div id="crafted"></div>
+			<div class="clear"></div>
 		</div>
-		<div id="crafted"></div>
-		<div class="clear"></div>
+		<div id="furnace">
+			<h1>Furnace</h1>
+			<div id="uncooked"></div>
+			<div id="cooked"></div>
+			<div class="clear"></div>
+		</div>
+		<div id="footer">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> &copy; 2013</div>
 	</div>
-	<div id="furnace">
-		<h1>Furnace</h1>
-		<div id="uncooked"></div>
-		<div id="cooked"></div>
-		<div class="clear"></div>
-	</div>
-	<div id="footer">Created by Dan Audne &copy; 2013</div>
 	<script type="text/javascript">
 		var allItems = {};
 		var allRecipes = {};
@@ -55,7 +58,7 @@
 				allRecipes = data;
 			}, "json");
 
-			var listheight = $(window).height() - 119;
+			var listheight = $(window).height() - 60;
 			$("#itemlist").css("height", listheight);
 
 		});
@@ -66,7 +69,7 @@
 			{
 				if(currentRecipe[rotation][i] != 0)
 				{
-					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png');
+					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]);
 				}
 			}
 			if(currentRecipe.length -1 <= rotation)
@@ -94,7 +97,8 @@
 				}
 			}
 		});
-		$("#items #itemlist").on("click", "li", function(){
+
+		function itemClick(){
 			var item = $(this);
 			var IID = item.attr("id");
 			var table = $("#craftingbench #crafted");
@@ -119,10 +123,14 @@
 			{
 				switchRecipes();
 			}
-		});
+		}
+
+		$("#items #itemlist").on("click", "li", itemClick);
+		$("#bench div").on("click", "img", itemClick);
+
 		$(window).on("resize", function(){
 			$("#itemlist").css("height", "0px");
-			var listheight = $(window).height() - 119;
+			var listheight = $(window).height() - 60;
 			$("#itemlist").css("height", listheight+"px");
 		});
 	</script>

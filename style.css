@@ -4,13 +4,15 @@ body
 	padding: 0;
 	margin: 0;
 }
-
+#left
+{
+	margin-right: 320px
+}
 #craftingbench
 {
 	background: #fff;
 	padding: 20px;
 	box-shadow: 0 1px 0 #ccc;
-	margin-right: 320px
 }
 	#craftingbench #crafted,
 	#bench div
@@ -78,6 +80,7 @@ body
 			padding: 10px;
 			border-bottom: 1px solid #ccc;
 			line-height: 30px;
+			cursor: pointer;
 		}
 			#itemlist ul li img
 			{
@@ -92,7 +95,7 @@ body
 
 #footer
 {
-	clear: both;
+	clear: left;
 	background: #fff;
 	margin-top: 20px;
 	padding: 20px;
