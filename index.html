@@ -96,6 +96,8 @@
 				if(currentRecipe[rotation][i] != 0)
 				{
 					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]);
+				} else {
+					$("#bench #b"+i+" img").attr('src', '/images_minecraft/0.png').attr('id', "0");
 				}
 			}
 			if(currentRecipe.length -1 <= rotation)
@@ -133,7 +135,7 @@
 			}
 			var table = $("#craftingtable #crafted");
 
-			$("#bench div img").attr("src", '/images_minecraft/0.png')
+			$("#bench div img").attr("src", '/images_minecraft/0.png').attr("id", "0");
 			table.empty();
 
 			table.append('<img src="/images_minecraft/'+IID+'.png" alt= />');

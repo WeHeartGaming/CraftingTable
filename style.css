@@ -42,6 +42,7 @@ body
 		border-left: 2px solid #373737;
 		border-right: 2px solid #fff;
 		border-bottom: 2px solid #fff;
+		cursor: pointer;
 	}
 	#bench div:nth-child(3n+1)
 	{
