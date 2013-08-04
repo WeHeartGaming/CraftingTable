@@ -46,6 +46,23 @@ body
 		{
 			
 		}
+#itemtype
+{
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+	#itemtype a
+	{
+		color: #6AA444;
+		text-decoration: none;
+		margin-left: 20px;
+	}
+	#itemtype a:first-of-type
+	{
+		margin: 0;
+	}
 #items
 {
 	width: 300px;

@@ -7,6 +7,7 @@
 <body>
 	<div id="items">
 		<div id="search"><input type="text" placeholder="Search" value="" /></div>
+		<div id="itemtype"><a href="#" id="0">All</a><a href="#" id="1">Crafted</a><a href="#" id="2">Cooked</a></div>
 		<div id="itemlist"><ul></ul></div>
 	</div>
 	<div id="left">
@@ -43,14 +44,39 @@
 
 		var interval = null;
 		var rotation = 0;
+
+		var itemtype = "0";
+
+		var search = "";
+		var regular = new RegExp("", "i");
+
+		function drawItemList()
+		{
+			for(i in allItems)
+			{
+				if(regular.test(allItems[i][1]))
+				{
+					if(itemtype == allItems[i][2])
+					{
+						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
+					}
+					else if(itemtype == allItems[i][2])
+					{
+						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
+					}
+					else if(itemtype == "0")
+					{
+						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
+					}
+				}
+			}
+		}
+
 		$(document).ready(function(){
 			$.get("/minecraft_items.json", function(data)
 			{
 				allItems = data;
-				for(i in data)
-				{
-					$("#itemlist ul").append('<li id="'+data[i][0]+'"><img src="/images_minecraft/'+data[i][0]+'.png" alt="'+data[i][1]+'" />'+data[i][1]+' <span>(id: '+data[i][0]+')</span></li>');
-				}
+				drawItemList();
 			}, "json");
 
 			$.get("/minecraft_recipes.json", function(data)
@@ -58,7 +84,7 @@
 				allRecipes = data;
 			}, "json");
 
-			var listheight = $(window).height() - 60;
+			var listheight = $(window).height() - 81;
 			$("#itemlist").css("height", listheight);
 
 		});
@@ -83,21 +109,21 @@
 		}
 		$("#search input").on("keyup", function(e){
 			e.preventDefault;
-			var value = $(this).val();
+			search = $(this).val();
+			regular = new RegExp(search, "i");
+			$("#itemlist ul").empty();
+
+			drawItemList();
+		});
+		$("#itemtype a").on("click", function(e){
+			e.preventDefault();
+
+			itemtype = $(this).attr("id");
 
 			$("#itemlist ul").empty();
 
-			var reg = new RegExp(value, "i"); 
-
-			for(i in allItems)
-			{
-				if(reg.test(allItems[i][1]))
-				{
-					$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
-				}
-			}
+			drawItemList();
 		});
-
 		function itemClick(){
 			var item = $(this);
 			var IID = item.attr("id");
@@ -130,7 +156,7 @@
 
 		$(window).on("resize", function(){
 			$("#itemlist").css("height", "0px");
-			var listheight = $(window).height() - 60;
+			var listheight = $(window).height() - 81;
 			$("#itemlist").css("height", listheight+"px");
 		});
 	</script>
