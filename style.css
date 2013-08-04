@@ -8,32 +8,56 @@ body
 {
 	margin-right: 320px
 }
-#craftingbench
+#craftingtable
 {
-	background: #fff;
+	float: left;
+	width: 300px;
+	margin-left: 20px;
+	border-top: 4px solid #fff;
+	border-left: 4px solid #fff;
+	border-right: 4px solid #373737;
+	border-bottom: 4px solid #373737;
+	background: #C6C6C6;
 	padding: 20px;
 	box-shadow: 0 1px 0 #ccc;
+	position: relative;
+	border-radius: 5px;
 }
-	#craftingbench #crafted,
+	#craftingtable h1
+	{
+		padding: 0 0 20px 0;
+		margin: 0;
+	}
+	#craftingtable #crafted,
 	#bench div
 	{
-		padding: 10px;
-		background: #ddd;
-		width: 50px;
-		height: 50px;
+		padding: 2px;
+		background: #8D8D8D;
+		width: 48px;
+		height: 48px;
 		margin-right: 10px;
 		margin-bottom: 10px;
 		float: left;
+		border-top: 2px solid #373737;
+		border-left: 2px solid #373737;
+		border-right: 2px solid #fff;
+		border-bottom: 2px solid #fff;
 	}
 	#bench div:nth-child(3n+1)
 	{
 		clear:left;
 	}
-		#craftingbench #crafted img,
+		#craftingtable #crafted img,
 		#bench div img
 		{
 			width: 100%;
 		}
+	#craftingtable #crafted
+	{
+		position: absolute;
+		top:144px;
+		right: 10px;
+	}
 	#furnace
 	{
 
@@ -101,7 +125,7 @@ body
 		}
 			#itemlist ul li img
 			{
-				width: 30px;
+				width: 24px;
 				padding-right: 10px;
 				vertical-align: middle;
 			}

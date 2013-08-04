@@ -12,7 +12,7 @@
 	</div>
 	<div id="left">
 		<header><h1>WeHeartGaming | Minecraft Item list and Crafting guide</h1></header>
-		<div id="craftingbench">
+		<div id="craftingtable">
 			<h1>Crafting Table</h1>
 			<div id="bench">
 				<div id="b0"><img src="/images_minecraft/0.png" alt= /></div>
@@ -127,7 +127,11 @@
 		function itemClick(){
 			var item = $(this);
 			var IID = item.attr("id");
-			var table = $("#craftingbench #crafted");
+			if(IID == "0")
+			{
+				return;
+			}
+			var table = $("#craftingtable #crafted");
 
 			$("#bench div img").attr("src", '/images_minecraft/0.png')
 			table.empty();
