@@ -1,13 +1,33 @@
+*
+{
+	font-family: 'Open Sans',sans-serif;
+	font-size: 100%;
+}
 body
 {
 	background: #e5e5e5;
 	padding: 0;
 	margin: 0;
+	font-size: 90%;
 }
 #left
 {
-	margin-right: 320px
+	position: relative;;
+	margin-right: 300px;
+	height: 100%;
 }
+header
+{
+	padding: 20px;
+	background: #58C7EA;
+}
+	header h1
+	{
+		padding: 0;
+		margin: 0;
+		color: #fff;
+		font-size: 16px;
+	}
 #craftingtable
 {
 	float: left;
@@ -58,6 +78,7 @@ body
 		position: absolute;
 		top:144px;
 		right: 10px;
+		cursor: default;
 	}
 	#furnace
 	{
@@ -97,6 +118,7 @@ body
 
 	#items input
 	{
+		background: #252525;
 		display: block;
 		width: 300px;
 		padding: 20px 20px;
@@ -104,8 +126,12 @@ body
 		height: 60px;
 		border: none;
 		font-size: 150%;
-		border-bottom: 1px solid #ccc;
+		color: #ccc;
 	}
+		#items input::-webkit-input-placeholder
+		{
+			color: #ccc;
+		}
 
 #itemlist
 {
@@ -119,8 +145,8 @@ body
 	}
 		#itemlist ul li
 		{
-			padding: 10px;
-			border-bottom: 1px solid #ccc;
+			padding: 5px;
+			border-bottom: 1px solid #eee;
 			line-height: 30px;
 			cursor: pointer;
 		}
@@ -135,15 +161,22 @@ body
 				font-size: 12px;
 			}
 
-#footer
+footer
 {
 	clear: left;
-	background: #fff;
+	color: #ccc;
+	background: #252525;
 	margin-top: 20px;
-	padding: 20px;
+	padding: 20px 0;
 	text-align: center;
-	border-top: 1px solid #ccc;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
+	footer a
+	{
+		color: #ccc;
+	}
 
 .clear
 {
