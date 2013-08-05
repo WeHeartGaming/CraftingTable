@@ -121,6 +121,8 @@
 			e.preventDefault();
 
 			itemtype = $(this).attr("id");
+			$("#itemtype a").css("font-weight", "normal");
+			$(this).css("font-weight", "bold");
 
 			$("#itemlist ul").empty();
 

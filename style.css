@@ -32,7 +32,7 @@ header
 {
 	float: left;
 	width: 300px;
-	margin-left: 20px;
+	margin: 20px;
 	border-top: 4px solid #fff;
 	border-left: 4px solid #fff;
 	border-right: 4px solid #373737;
@@ -76,7 +76,7 @@ header
 	#craftingtable #crafted
 	{
 		position: absolute;
-		top:144px;
+		top:122px;
 		right: 10px;
 		cursor: default;
 	}
@@ -108,6 +108,7 @@ header
 	#itemtype a:first-of-type
 	{
 		margin: 0;
+		font-weight: bold;
 	}
 #items
 {
