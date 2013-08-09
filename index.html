@@ -15,17 +15,17 @@
 		<div id="craftingtable">
 			<h1>Crafting Table</h1>
 			<div id="bench">
-				<div id="b0"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b1"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b2"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b3"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b4"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b5"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b6"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b7"><img src="/images_minecraft/0.png" alt= /></div>
-				<div id="b8"><img src="/images_minecraft/0.png" alt= /></div>
+				<div id="b0"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b1"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b2"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b3"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b4"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b5"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b6"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b7"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="b8"><img src="/images_minecraft/0.png" alt="air" /></div>
 			</div>
-			<div id="crafted"></div>
+			<div id="crafted"><img src="/images_minecraft/0.png" alt="air" /></div>
 			<div class="clear"></div>
 		</div>
 		<div id="furnace">
@@ -56,17 +56,28 @@
 			{
 				if(regular.test(allItems[i][1]))
 				{
+					var type = null;
+
+					if(allItems[i][2] == "1")
+					{
+						type = "crafted";
+					}
+					else if(allItems[i][2] == "2")
+					{
+						type = "cooked";
+					}
+					else
+					{
+						type = "na";
+					}
+
 					if(itemtype == allItems[i][2])
 					{
-						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
-					}
-					else if(itemtype == allItems[i][2])
-					{
-						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
+						$("#itemlist ul").append('<li class="'+type+'" class="crafted" id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
 					}
 					else if(itemtype == "0")
 					{
-						$("#itemlist ul").append('<li id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
+						$("#itemlist ul").append('<li class="'+type+'" id="'+allItems[i][0]+'"><img src="/images_minecraft/'+allItems[i][0]+'.png" alt="'+allItems[i][1]+'" />'+allItems[i][1]+' <span>(id: '+allItems[i][0]+')</span></li>');
 					}
 				}
 			}
@@ -95,9 +106,9 @@
 			{
 				if(currentRecipe[rotation][i] != 0)
 				{
-					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]);
+					$("#bench #b"+i+" img").attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]).attr("alt", currentRecipe[rotation][i]);
 				} else {
-					$("#bench #b"+i+" img").attr('src', '/images_minecraft/0.png').attr('id', "0");
+					$("#bench #b"+i+" img").attr('src', '/images_minecraft/0.png').attr('id', "0").attr("alt", "air");
 				}
 			}
 			if(currentRecipe.length -1 <= rotation)
@@ -128,19 +139,25 @@
 
 			drawItemList();
 		});
-		function itemClick(){
+
+		function clearTable()
+		{
+			$("#bench div img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
+			$("#craftingtable #crafted img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
+		}
+
+		function clickBench()
+		{
 			var item = $(this);
 			var IID = item.attr("id");
 			if(IID == "0")
 			{
 				return;
 			}
-			var table = $("#craftingtable #crafted");
 
-			$("#bench div img").attr("src", '/images_minecraft/0.png').attr("id", "0");
-			table.empty();
+			clearTable();
 
-			table.append('<img src="/images_minecraft/'+IID+'.png" alt= />');
+			$("#craftingtable #crafted img").attr("src", '/images_minecraft/'+IID+'.png').attr("id", IID);
 
 			currentRecipe = allRecipes[IID];
 
@@ -159,8 +176,17 @@
 			}
 		}
 
-		$("#items #itemlist").on("click", "li", itemClick);
-		$("#bench div").on("click", "img", itemClick);
+		function clickFurnace()
+		{
+			var item = $(this);
+			var IID = item.attr("id");
+
+			
+		}
+
+		$("#items #itemlist ul").on("click", "li.crafted", clickBench);
+		$("#bench div").on("click", "img", clickBench);
+		$("#items #itemlist ul").on("click", "li.cooked", clickFurnace);
 
 		$(window).on("resize", function(){
 			$("#itemlist").css("height", "0px");
