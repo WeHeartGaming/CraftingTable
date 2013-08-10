@@ -12,7 +12,7 @@
 	</div>
 	<div id="left">
 		<header><h1>WeHeartGaming | Minecraft Item list and Crafting guide</h1></header>
-		<div id="craftingtable">
+		<div id="craftingtable" class="table">
 			<h1>Crafting Table</h1>
 			<div id="bench">
 				<div id="b0"><img src="/images_minecraft/0.png" alt="air" /></div>
@@ -28,10 +28,10 @@
 			<div id="crafted"><img src="/images_minecraft/0.png" alt="air" /></div>
 			<div class="clear"></div>
 		</div>
-		<div id="furnace">
+		<div id="furnace" class="table">
 			<h1>Furnace</h1>
-			<div id="uncooked"></div>
-			<div id="cooked"></div>
+			<div id="uncooked"><img src="/images_minecraft/0.png" alt="air" /></div>
+			<div id="cooked"><img src="/images_minecraft/0.png" alt="air" /></div>
 			<div class="clear"></div>
 		</div>
 		<footer>Created by <a href="http://weheartgaming.com">WeHeartGaming</a> &copy; 2013</footer>
@@ -144,6 +144,8 @@
 		{
 			$("#bench div img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
 			$("#craftingtable #crafted img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
+			$("#furnace #uncooked img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
+			$("#furnace #cooked img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
 		}
 
 		function clickBench()
@@ -181,7 +183,11 @@
 			var item = $(this);
 			var IID = item.attr("id");
 
+			clearTable();
 			
+			$("#furnace #cooked img").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", allItems["263-1"][1]);
+
+			$("#furnace #uncooked img").attr("src", '/images_minecraft/'+allRecipes[IID][0][0]+'.png').attr("alt", allItems[IID][1]);
 		}
 
 		$("#items #itemlist ul").on("click", "li.crafted", clickBench);

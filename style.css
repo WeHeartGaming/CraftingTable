@@ -30,18 +30,7 @@ header
 	}
 #craftingtable
 {
-	float: left;
 	width: 300px;
-	margin: 20px;
-	border-top: 4px solid #fff;
-	border-left: 4px solid #fff;
-	border-right: 4px solid #373737;
-	border-bottom: 4px solid #373737;
-	background: #C6C6C6;
-	padding: 20px;
-	box-shadow: 0 1px 0 #ccc;
-	position: relative;
-	border-radius: 5px;
 }
 	#craftingtable h1
 	{
@@ -49,7 +38,8 @@ header
 		margin: 0;
 	}
 	#craftingtable #crafted,
-	#bench div
+	#bench div,
+	#furnace div
 	{
 		padding: 2px;
 		background: #8D8D8D;
@@ -69,7 +59,8 @@ header
 		clear:left;
 	}
 		#craftingtable #crafted img,
-		#bench div img
+		#bench div img,
+		#furnace div img
 		{
 			width: 100%;
 		}
@@ -161,7 +152,19 @@ header
 			{
 				font-size: 12px;
 			}
-
+.table
+{
+	float: left;
+	margin: 20px 0 0 20px;
+	border-top: 4px solid #fff;
+	border-left: 4px solid #fff;
+	border-right: 4px solid #373737;
+	border-bottom: 4px solid #373737;
+	background: #C6C6C6;
+	padding: 20px;
+	position: relative;
+	border-radius: 5px;
+}
 footer
 {
 	clear: left;
