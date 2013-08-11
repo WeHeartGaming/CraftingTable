@@ -77,7 +77,7 @@ header
 }
 #craftingtable
 {
-	width: 300px;
+	width: 370px;
 	display: none;
 }
 	#craftingtable h1,
@@ -86,44 +86,62 @@ header
 		padding: 0 0 20px 0;
 		margin: 0;
 	}
-	#craftingtable #crafted,
-	#bench div,
-	#furnace div
+	#craftingtable .crafted, #craftingtable #bench .slot, #furnace img.slot
 	{
+		float: left;
 		padding: 2px;
 		background: #8D8D8D;
 		width: 48px;
 		height: 48px;
-		margin-right: 10px;
-		margin-bottom: 10px;
-		float: left;
+		margin:0 10px 10px 0;
 		border-top: 2px solid #373737;
 		border-left: 2px solid #373737;
 		border-right: 2px solid #fff;
 		border-bottom: 2px solid #fff;
 		cursor: pointer;
 	}
-	#bench div:nth-child(3n+1)
+	#craftingtable #bench img
 	{
-		clear:left;
+		float: left;
 	}
-		#craftingtable #crafted img,
-		#bench div img,
-		#furnace div img
-		{
-			width: 100%;
-		}
-	#craftingtable #crafted
+	#craftingtable #bench #crafted
 	{
-		position: absolute;
-		top:122px;
-		right: 10px;
-		cursor: default;
+		margin-left: 20px !important;
+		position: relative;
+	}
+		#craftingtable #bench #crafted span
+		{
+			position: absolute;
+			bottom: 5px;
+			right: 5px;
+			color: #fff;
+			text-shadow:1px 1px 0px #222;
+		}
+
+	#craftingtable #crafted img,
+	#bench div img,
+	#furnace div img
+	{
+		width: 100%;
 	}
 	#furnace
 	{
 		display: none;
+		width: 250px;
 	}
+		#bench .arrow,
+		#furnace .arrow
+		{
+			float: left;
+			padding-right: 20px;
+		}
+		#furnace .fire
+		{
+			float: left;
+			width: 40px;
+			height: 40px;
+			margin-left: 5px;
+		}
 		#furnace #uncooked
 		{
 
