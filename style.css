@@ -5,34 +5,77 @@
 }
 body
 {
-	background: #e5e5e5;
+	background: #ddd;
 	padding: 0;
 	margin: 0;
-	font-size: 90%;
+	min-width: 800px;
 }
-#left
+a
 {
-	position: relative;;
-	margin-right: 300px;
-	height: 100%;
+	color: #0997D5;
 }
 header
 {
-	padding: 20px;
-	background: #58C7EA;
+	height: 60px;
+	background: #2A2A2A;
 }
 	header h1
 	{
 		padding: 0;
 		margin: 0;
-		color: #fff;
-		font-size: 16px;
+		line-height: 60px;
+		color: #ddd;
+		font-size: 100%;
 	}
+	header #logo
+	{
+		padding: 10px;
+		height: 60px;
+		float: left;
+	}
+		header #logo img
+		{
+			height: 100%;
+		}
+	header .btn
+	{
+		margin-top: 12px;
+	}
+	#search input
+	{
+		background: #4a4a4a;
+		border-width: 0 0 0 1px;
+		border-style: solid;
+		border-color: #111;
+		display: block;
+		width: 300px;
+		padding: 20px 20px;
+		line-height: 30px;
+		height: 60px;
+		font-size: 150%;
+		color: #ccc;
+		margin-left: 20px;
+	}
+		#search input::-webkit-input-placeholder
+		{
+			color: #fff;
+		}
+#content
+{
+}
+#left
+{
+	padding: 20px;
+	position: relative;
+	margin-right: 300px;
+}
 #craftingtable
 {
 	width: 300px;
+	display: none;
 }
-	#craftingtable h1
+	#craftingtable h1,
+	#furnace h1
 	{
 		padding: 0 0 20px 0;
 		margin: 0;
@@ -73,7 +116,7 @@ header
 	}
 	#furnace
 	{
-
+		display: none;
 	}
 		#furnace #uncooked
 		{
@@ -85,14 +128,18 @@ header
 		}
 #itemtype
 {
-	height: 20px;
-	line-height: 20px;
+	height: 30px;
+	line-height: 30px;
 	text-align: center;
 	border-bottom: 1px solid #ccc;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
 }
 	#itemtype a
 	{
-		color: #6AA444;
+		color: #0997D5;
 		text-decoration: none;
 		margin-left: 20px;
 	}
@@ -105,29 +152,18 @@ header
 {
 	width: 300px;
 	background: #fff;
+	border-left:1px solid #ccc;
 	float: right;
+	height: 100%;
+	position: relative;
+	padding-top: 30px;
+	padding-bottom: 40px;
 }
-
-	#items input
-	{
-		background: #252525;
-		display: block;
-		width: 300px;
-		padding: 20px 20px;
-		line-height: 30px;
-		height: 60px;
-		border: none;
-		font-size: 150%;
-		color: #ccc;
-	}
-		#items input::-webkit-input-placeholder
-		{
-			color: #ccc;
-		}
 
 #itemlist
 {
 	overflow: auto;
+	height: 100%;
 }
 	#itemlist ul
 	{
@@ -152,10 +188,9 @@ header
 			{
 				font-size: 12px;
 			}
-.table
+.thetable
 {
 	float: left;
-	margin: 20px 0 0 20px;
 	border-top: 4px solid #fff;
 	border-left: 4px solid #fff;
 	border-right: 4px solid #373737;
@@ -165,22 +200,25 @@ header
 	position: relative;
 	border-radius: 5px;
 }
+.white
+{
+	margin-bottom: 20px;	
+	background: #fff;
+	border-radius: 3px;
+	padding: 1px 20px 20px 20px;
+}
 footer
 {
 	clear: left;
 	color: #ccc;
 	background: #252525;
 	margin-top: 20px;
-	padding: 20px 0;
+	padding: 10px 0;
 	text-align: center;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 }
-	footer a
-	{
-		color: #ccc;
-	}
 
 .clear
 {

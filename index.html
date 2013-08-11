@@ -1,38 +1,52 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>The Crafting Table</title>
+	<link rel="stylesheet" href="/style/bootstrap.min.css">
 	<link href="/style.css" media="all" rel="stylesheet" type="text/css" />
 	<script src="/jquery.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-	<div id="items">
-		<div id="search"><input type="text" placeholder="Search..." value="" /></div>
-		<div id="itemtype"><a href="#" id="0">All</a><a href="#" id="1">Crafted</a><a href="#" id="2">Cooked</a></div>
-		<div id="itemlist"><ul></ul></div>
-	</div>
-	<div id="left">
-		<header><h1>WeHeartGaming | Minecraft Item list and Crafting guide</h1></header>
-		<div id="craftingtable" class="table">
-			<h1>Crafting Table</h1>
-			<div id="bench">
-				<div id="b0"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b1"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b2"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b3"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b4"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b5"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b6"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b7"><img src="/images_minecraft/0.png" alt="air" /></div>
-				<div id="b8"><img src="/images_minecraft/0.png" alt="air" /></div>
-			</div>
-			<div id="crafted"><img src="/images_minecraft/0.png" alt="air" /></div>
-			<div class="clear"></div>
+<body>	
+	<header>
+		<div id="logo"><a href="/"><img src="/gfx/logo.png" alt="Logo" /></a></div>
+		<h1 class="pull-left">Minecraft Item list and Crafting guide</h1>
+		<div id="search" class="pull-right"><input type="text" placeholder="Search..." value="" /></div>
+		<a href="https://github.com/WeHeartGaming/CraftingTable/issues" class="btn btn-warning pull-right">Issues or ideas?</a>
+	</header>
+
+	<div id="content">
+		<div id="items">
+			<div id="itemtype"><a href="#" id="0">All</a><a href="#" id="1">Crafted</a><a href="#" id="2">Cooked</a></div>
+			<div id="itemlist"><ul></ul></div>
 		</div>
-		<div id="furnace" class="table">
-			<h1>Furnace</h1>
-			<div id="uncooked"><img src="/images_minecraft/0.png" alt="air" /></div>
-			<div id="cooked"><img src="/images_minecraft/0.png" alt="air" /></div>
-			<div class="clear"></div>
+		<div id="left">
+			<div class="white" id="info">
+				<h2>Welcome!</h2>
+				<p>Search for and/or click on an item for it to show the recipe!</p>
+			</div>
+			<div id="craftingtable" class="thetable">
+				<h1>Crafting Table</h1>
+				<div id="bench">
+					<div id="b0"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b1"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b2"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b3"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b4"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b5"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b6"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b7"><img src="/images_minecraft/0.png" alt="air" /></div>
+					<div id="b8"><img src="/images_minecraft/0.png" alt="air" /></div>
+				</div>
+				<div id="crafted"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div class="clear"></div>
+			</div>
+			<div id="furnace" class="thetable">
+				<h1>Furnace</h1>
+				<div id="uncooked"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div id="cooked"><img src="/images_minecraft/0.png" alt="air" /></div>
+				<div class="clear"></div>
+			</div>
 		</div>
 		<footer>Created by <a href="http://weheartgaming.com">WeHeartGaming</a> &copy; 2013</footer>
 	</div>
@@ -42,7 +56,8 @@
 
 		var currentRecipe = {};
 
-		var interval = null;
+		var crafting = null;
+		var cooking = null;
 		var rotation = 0;
 
 		var itemtype = "0";
@@ -50,10 +65,13 @@
 		var search = "";
 		var regular = new RegExp("", "i");
 
+		var offset = 60;
+
 		function drawItemList()
 		{
-			for(i in allItems)
+			for(var i in allItems)
 			{
+				console.log(i);
 				if(regular.test(allItems[i][1]))
 				{
 					var type = null;
@@ -95,8 +113,7 @@
 				allRecipes = data;
 			}, "json");
 
-			var listheight = $(window).height() - 81;
-			$("#itemlist").css("height", listheight);
+			resizeWindow();
 
 		});
 		function switchRecipes()
@@ -120,6 +137,20 @@
 				rotation = rotation + 1;
 			}
 		}
+		function switchFurnace()
+		{
+			$("#furnace #uncooked img").attr("src", '/images_minecraft/'+currentRecipe[0][rotation]+'.png').attr("alt", allItems[currentRecipe[0][rotation]][1]);
+
+			if(currentRecipe[0].length -1 <= rotation)
+			{
+				rotation = 0;
+			}
+			else
+			{
+				rotation = rotation + 1;
+			}
+		}
+
 		$("#search input").on("keyup", function(e){
 			e.preventDefault;
 			search = $(this).val();
@@ -142,39 +173,40 @@
 
 		function clearTable()
 		{
+			rotation = 0;
 			$("#bench div img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
 			$("#craftingtable #crafted img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
 			$("#furnace #uncooked img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
 			$("#furnace #cooked img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
+
+			clearInterval(crafting);
+			clearInterval(cooking);
 		}
 
 		function clickBench()
 		{
 			var item = $(this);
 			var IID = item.attr("id");
+
+			$("#info").hide();
+
 			if(IID == "0")
 			{
 				return;
 			}
 
 			clearTable();
-
+			$("#furnace").hide();
+			$("#craftingtable").show();
 			$("#craftingtable #crafted img").attr("src", '/images_minecraft/'+IID+'.png').attr("id", IID);
 
 			currentRecipe = allRecipes[IID];
 
-			rotation = 0;
 			switchRecipes();
-			clearInterval(interval);
 			
 			if(currentRecipe.length > 1)
 			{
-				clearInterval(interval);
-				interval = setInterval(switchRecipes, 2000);
-			}
-			else
-			{
-				switchRecipes();
+				crafting = setInterval(switchRecipes, 2000);
 			}
 		}
 
@@ -183,22 +215,36 @@
 			var item = $(this);
 			var IID = item.attr("id");
 
-			clearTable();
-			
-			$("#furnace #cooked img").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", allItems["263-1"][1]);
+			currentRecipe = allRecipes[IID];
 
-			$("#furnace #uncooked img").attr("src", '/images_minecraft/'+allRecipes[IID][0][0]+'.png').attr("alt", allItems[IID][1]);
+			$("#info").hide();
+
+			clearTable();
+
+			$("#craftingtable").hide();
+			$("#furnace").show();
+
+			$("#furnace #cooked img").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", allItems[IID][1]);
+
+			switchFurnace();
+			if(currentRecipe[0].length > 1)
+			{
+				cooking = setInterval(switchFurnace, 2000);
+			}
 		}
 
 		$("#items #itemlist ul").on("click", "li.crafted", clickBench);
 		$("#bench div").on("click", "img", clickBench);
 		$("#items #itemlist ul").on("click", "li.cooked", clickFurnace);
 
-		$(window).on("resize", function(){
-			$("#itemlist").css("height", "0px");
-			var listheight = $(window).height() - 81;
-			$("#itemlist").css("height", listheight+"px");
-		});
+		function resizeWindow()
+		{
+			$("#content").css("height", "0px");
+			var listheight = $(window).height() - offset;
+			$("#content").css("height", listheight+"px");
+		}
+
+		$(window).on("resize", resizeWindow);
 	</script>
 </body>
 </html>
