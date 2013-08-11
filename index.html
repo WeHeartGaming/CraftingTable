@@ -162,9 +162,20 @@
 			{
 				if(currentRecipe[rotation][i] != 0)
 				{
-					$("#bench img.b"+i).attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]).attr("alt", findItem(currentRecipe[rotation][i])[1]).attr("title", findItem(currentRecipe[rotation][i])[1]);
+					var item = findItem(currentRecipe[rotation][i]);
+					var theClass = "";
+					if(item[2] == "1")
+					{
+						theClass = "crafted";
+					}
+					else if(item[2] == "2")
+					{
+						theClass = "cooked";
+					}
+
+					$("#bench img.b"+i).attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]).attr("alt", item[1]).attr("title", item[1]).removeClass("crafted").removeClass("cooked").addClass(theClass);
 				} else {
-					$("#bench img.b"+i).attr('src', '/images_minecraft/0.png').attr('id', "0").attr("alt", "air");
+					$("#bench img.b"+i).attr('src', '/images_minecraft/0.png').attr('id', "0").attr("alt", "air").removeClass("crafted").removeClass("cooked");
 				}
 			}
 			if(currentRecipe.length -1 <= rotation)
@@ -278,7 +289,8 @@
 		}
 
 		$("#items #itemlist ul").on("click", "li.crafted", clickBench);
-		$("#bench").on("click", "img", clickBench);
+		$("#bench").on("click", "img.cooked", clickFurnace);
+		$("#bench").on("click", "img.crafted", clickBench);
 		$("#items #itemlist ul").on("click", "li.cooked", clickFurnace);
 
 		function resizeWindow()
