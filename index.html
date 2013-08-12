@@ -19,14 +19,16 @@
 </head>
 <body>	
 	<header>
-		<div id="logo"><a href="/"><img src="/gfx/logo.png" alt="Logo" /></a></div>
-		<h1 class="pull-left">Minecraft Item list and Crafting guide</h1>
-		<div id="search" class="pull-right"><input type="text" placeholder="Search..." value="" /></div>
-		<a href="https://github.com/WeHeartGaming/CraftingTable/issues" class="btn btn-warning pull-right">Issues or ideas?</a>
+		<div class="container">
+			<div id="logo"><a href="/"><img src="/gfx/logo.png" alt="Logo" /></a></div>
+			<h1 class="pull-left">Minecraft Item list and Crafting guide</h1>
+			<div id="search" class="pull-right"><input type="text" placeholder="Search..." value="" /></div>
+			<a href="https://github.com/WeHeartGaming/CraftingTable/issues" class="btn btn-warning pull-right">Issues or ideas?</a>
+		</div>
 	</header>
 
-	<div id="content">
-		<div id="items">
+	<div id="content" class="container">
+		<div id="items" class="desktop">
 			<div id="itemtype"><a href="#" id="0">All</a><a href="#" id="1">Crafted</a><a href="#" id="2">Cooked</a></div>
 			<div id="itemlist"><ul></ul></div>
 		</div>
@@ -77,8 +79,10 @@
 				<img class="slot clear" src="/images_minecraft/263-0.png" alt="air" />
 			</div>
 		</div>
-		<footer>Created by Dan @ <a href="http://weheartgaming.com">WeHeartGaming</a> using <a href="http://getbootstrap.com/">Bootstrap v3</a> &copy; 2013</footer>
 	</div>
+	<footer>
+		<div class="container">Created by Dan @ <a href="http://weheartgaming.com">WeHeartGaming</a> using <a href="http://getbootstrap.com/">Bootstrap v3</a> &copy; 2013</div>
+	</footer>
 	<script type="text/javascript">
 		var allItems = {};
 		var allRecipes = {};
