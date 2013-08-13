@@ -35,7 +35,8 @@ header
 		{
 			display: block;
 			height: 60px;
-			padding: 14px;
+			width: auto;
+			padding: 14px 0;
 			margin-right: 20px;
 		}
 		header #logo a img
@@ -166,6 +167,11 @@ header
 		margin: 0;
 		font-weight: bold;
 	}
+#left, #items-container
+{
+	height: 100%;
+}
+
 #items
 {
 	background: #fff;
