@@ -53,36 +53,33 @@ header
 		border-style: solid;
 		border-color: #111;
 		display: block;
-		width: 300px;
+		width: 100%;
 		padding: 20px 20px;
 		line-height: 30px;
 		height: 60px;
 		font-size: 150%;
 		color: #ccc;
-		margin-left: 20px;
 	}
 		#search input::-webkit-input-placeholder
 		{
 			color: #fff;
 		}
-#left
+.content
 {
-	padding: 20px;
-	position: relative;
-	margin-right: 300px;
+	padding-top: 20px;
 }
-#craftingtable
+#bench
 {
 	width: 370px;
 	display: none;
 }
-	#craftingtable h1,
+	#bench h1,
 	#furnace h1
 	{
 		padding: 0 0 20px 0;
 		margin: 0;
 	}
-	#craftingtable .crafted, #craftingtable #bench .slot, #furnace img.slot
+	#bench .crafted, #bench .slot, #furnace img.slot
 	{
 		float: left;
 		padding: 2px;
@@ -96,16 +93,16 @@ header
 		border-bottom: 2px solid #fff;
 		cursor: pointer;
 	}
-	#craftingtable #bench img
+	#bench img
 	{
 		float: left;
 	}
-	#craftingtable #bench #crafted
+	#bench #crafted
 	{
 		margin-left: 20px !important;
 		position: relative;
 	}
-		#craftingtable #bench #crafted span
+		#bench #crafted span
 		{
 			position: absolute;
 			bottom: 5px;
@@ -115,7 +112,7 @@ header
 			text-shadow:1px 1px 0px #222;
 		}
 
-	#craftingtable #crafted img,
+	#bench #crafted img,
 	#bench div img,
 	#furnace div img
 	{
@@ -171,10 +168,7 @@ header
 	}
 #items
 {
-	width: 300px;
 	background: #fff;
-	border-left:1px solid #ccc;
-	float: right;
 	height: 100%;
 	position: relative;
 	padding-top: 30px;
