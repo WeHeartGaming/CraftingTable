@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-sm-7 col-lg-8 content">
 				<div id="info">
-					<a href="#" class="btn btn-danger visible-sm">Close and open item list</a>
+					<a href="#" id="close" class="btn btn-danger visible-sm">Close and open item list</a>
 					<h2>Welcome!</h2>
 					<p>Search for and/or click on an item for it to show the recipe!</p>
 					<p>
@@ -65,26 +65,27 @@
 				</div>
 				<div id="bench" class="thetable">
 					<h1>Crafting Table</h1>
-					<img class="b0 slot" src="/images_minecraft/0.png" alt="air" />
-					<img class="b1 slot" src="/images_minecraft/0.png" alt="air" />
-					<img class="b2 slot" src="/images_minecraft/0.png" alt="air" />
-					<img class="b3 slot clear" src="/images_minecraft/0.png" alt="air" />
-					<img class="b4 slot" src="/images_minecraft/0.png" alt="air" />
-					<img class="b5 slot" src="/images_minecraft/0.png" alt="air" />
+					<img class="b0 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b1 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b2 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b3 slot clear" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b4 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b5 slot" src="/images_minecraft/0.png" alt="air" id="0" />
 					<img class="arrow" src="/gfx/arrow.png" alt="arrow" />
-					<div id="crafted" class="slot"><img src="/images_minecraft/0.png" alt="air" /><span></span></div>
-					<img class="b6 slot clear" src="/images_minecraft/0.png" alt="air" />
-					<img class="b7 slot" src="/images_minecraft/0.png" alt="air" />
-					<img class="b8 slot" src="/images_minecraft/0.png" alt="air" />
+					<div id="crafted" class="slot"><img src="/images_minecraft/0.png" alt="air" id="0" /><span></span></div>
+					<img class="b6 slot clear" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b7 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b8 slot" src="/images_minecraft/0.png" alt="air" id="0" />
 				</div>
 				<div id="furnace" class="thetable">
 					<h1>Furnace</h1>
-					<img class="slot uncooked" src="/images_minecraft/0.png" alt="air" />
+					<img class="slot uncooked" src="/images_minecraft/0.png" alt="air" id="0" />
 					<img class="arrow" src="/gfx/arrow.png" alt="arrow" />
-					<img class="slot cooked" class="slot" src="/images_minecraft/0.png" alt="air" />
+					<img class="slot cooked" class="slot" src="/images_minecraft/0.png" alt="air" id="0" />
 					<img class="fire" src="/gfx/fire.png" alt="fire" />
 					<img class="slot clear" src="/images_minecraft/263-0.png" alt="air" />
 				</div>
+				<div id="hideme"><a href="#" class="btn btn-danger visible-sm">Item list</a></div>
 			</div>
 		</div>
 	</div>
@@ -107,6 +108,8 @@
 		var regular = new RegExp("", "i");
 
 		var offset = 60;
+
+		var small = false;
 
 		function drawItemList()
 		{
@@ -156,9 +159,10 @@
 			resizeWindow();
 			if($("body").width() < 768)
 			{
+				small = true;
 				$("#items-container	").hide();
+				$("#hideme").hide();
 			}
-
 		});
 
 		function findItem(id)
@@ -250,6 +254,14 @@
 			clearInterval(cooking);
 		}
 
+		function isSmall()
+		{
+
+			$("#items-container").hide();
+			$(".content").show();
+			$("#hideme").show();
+		}
+
 		function clickBench()
 		{
 			var IID = $(this).attr("id");
@@ -265,7 +277,14 @@
 			clearTable();
 			$("#furnace").hide();
 			$("#bench").show();
-			$("#bench #crafted img").attr("src", '/images_minecraft/'+IID+'.png').attr("id", IID);
+			$("#hide").show();
+			$("#bench #crafted img").attr("src", '/images_minecraft/'+IID+'.png').attr("id", IID).attr("id", item[0]);
+
+			if(small)
+			{
+				isSmall();
+			}
+
 			if (item[3] != "1")
 			{
 				$("#bench #crafted span").append(item[3]);
@@ -294,8 +313,13 @@
 
 			$("#bench").hide();
 			$("#furnace").show();
+			$("#hide").show();
+			if(small)
+			{
+				isSmall();
+			}
 
-			$("#furnace img.cooked").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", item[1]);
+			$("#furnace img.cooked").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", item[1]).attr("id", item[0]);
 
 			switchFurnace();
 			if(currentRecipe[0].length > 1)
@@ -309,8 +333,44 @@
 		$("#bench").on("click", "img.crafted", clickBench);
 		$("#items #itemlist ul").on("click", "li.cooked", clickFurnace);
 
+		$("#hideme").on("click", function(e){
+			e.preventDefault;
+
+			$("#items-container").show();
+			$(".content").hide();
+		});
+
+		$("#close").on("click", function(e) {
+			e.preventDefault;
+
+			$("#info").hide();
+			if(small)
+			{
+				$(".content").hide();
+			}
+			$("#items-container").show();
+		});
+
 		function resizeWindow()
 		{
+			if($("body").width() > 768)
+			{
+				$("#items-container").show();
+				$(".content").show();
+				small = false;
+			}
+			else
+			{
+				small = true;
+				if($("#furnace .cooked").attr("id") != "0" || $("#bench #crafted img").attr("id") != "0")
+				{
+					$("#items-container").hide();
+				}
+				else
+				{
+					$("#items-container").show();
+				}
+			}
 			$("#content").css("height", "0px");
 			var listheight = $(window).height() - offset;
 			$("#content").css("height", listheight+"px");
