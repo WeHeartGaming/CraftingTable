@@ -68,7 +68,7 @@ header
 .content
 {
 	padding-top: 20px;
-	padding-bottom: 40px;
+	padding-bottom: 60px;
 	height: 100%;
 	overflow: auto;
 }
@@ -157,7 +157,7 @@ header
 		{
 			
 		}
-#itemtype
+#itemtype, #sortby
 {
 	height: 30px;
 	line-height: 30px;
@@ -168,13 +168,17 @@ header
 	right: 0;
 	width: 100%;
 }
-	#itemtype a
+	#sortby
+	{
+		top: 30px;
+	}
+	#itemtype a, #sortby a
 	{
 		color: #0997D5;
 		text-decoration: none;
 		margin-left: 20px;
 	}
-	#itemtype a:first-of-type
+	#itemtype a:first-of-type, #sortby a:first-of-type
 	{
 		margin: 0;
 		font-weight: bold;
@@ -189,7 +193,7 @@ header
 	background: #fff;
 	height: 100%;
 	position: relative;
-	padding-top: 30px;
+	padding-top: 60px;
 	padding-bottom: 40px;
 }
 
