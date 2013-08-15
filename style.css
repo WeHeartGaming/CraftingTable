@@ -218,6 +218,7 @@ header
 			#itemlist ul li img
 			{
 				height: 24px;
+				max-width: 34px;
 				padding-right: 10px;
 				vertical-align: middle;
 			}
