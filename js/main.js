@@ -33,14 +33,15 @@
 
     // Attach event handlers
     $('#itemlist ul').on('click', 'li', itemClick);
-    $('#bench').on('click', 'img.cooked', itemClick);
-    $('#hideme a').on('click', function (e) {
+    $('#furnace').on('click', 'img.uncooked', itemClick);
+    $('#bench').on('click', 'img.slot', itemClick);
+    $('#hideme a').on('click', function () {
       $('#items-container').show();
       $('.content').hide();
         
       return false;
     });
-    $('#close').on('click', function (e) {
+    $('#close').on('click', function () {
       $('#info').hide();
       if (small) {
         $('.content').hide();
@@ -61,7 +62,7 @@
     // Responsible design (css?)
     small = $('body').width() < 768;
     if (small) {
-      if ($('#furnace .cooked').attr('id') != '0' || $('#bench #crafted img').attr('id') != '0') {
+      if ($('#furnace .cooked').attr('id') !== '0' || $('#bench #crafted img').attr('id') !== '0') {
         $('#items-container').hide();
       } else {
         $('#items-container').show();
@@ -90,19 +91,19 @@
     for (var i in currentItems) {
       if (regular.test(currentItems[i][1])) {
         var type = null;
-        if (currentItems[i][2] == '1') {
+        if (currentItems[i][2] === '1') {
           type = 'crafted';
-        } else if (currentItems[i][2] == '2') {
+        } else if (currentItems[i][2] === '2') {
           type = 'cooked';
         } else {
           type = 'na';
         }
 
         // WARNING: this is slow
-        if (itemtype == currentItems[i][2]) {
+        if (itemtype === currentItems[i][2]) {
           $('#itemlist ul')
             .append('<li class="' + type + '" class="crafted" id="item-' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
-        } else if (itemtype == '0') {
+        } else if (itemtype === '0') {
           $('#itemlist ul')
             .append('<li class="' + type + '" id="item-' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
         }
@@ -112,31 +113,31 @@
 
   function findItem(id) {
     for (var i in currentItems) {
-      if (currentItems[i][0] == id) {
+      if (currentItems[i][0] === id) {
         return currentItems[i];
       }
     }
   }
 
   function switchRecipes() {
-    if (!currentRecipe) return;
-    
+    if (!currentRecipe) { return; }
+
     for (var i = 0; i <= 8; i++) {
-      if (currentRecipe[rotation][i] !== 0) {
+      if (currentRecipe[rotation][i] !== '0') {
         var item = findItem(currentRecipe[rotation][i]);
         var theClass = '';
-        if (!item) return;
+        if (!item){ return; }
         
-        if (item[2] == '1') {
+        if (item[2] === '1') {
           theClass = 'crafted';
-        } else if (item[2] == '2') {
+        } else if (item[2] === '2') {
           theClass = 'cooked';
         }
         
         $('#bench img.b' + i)
           .attr({
-            'src': 'images_minecraft/' + currentRecipe[rotation][i] + '.png',
-            'id': currentRecipe[rotation][i],
+            'src': 'images_minecraft/' + item[0] + '.png',
+            'id': 'item-' + item[0],
             'alt': item[1],
             'title': item[1]
           }).removeClass('crafted cooked')
@@ -146,7 +147,8 @@
           .attr({
             'src': 'images_minecraft/0.png',
             'id': '0',
-            'alt': 'air'
+            'alt': 'air',
+            'title': 'air'
           }).removeClass('crafted cooked');
       }
     }
@@ -159,9 +161,14 @@
   }
 
   function switchFurnace() {
+    var item = findItem(currentRecipe[0][rotation]);
     $('#furnace img.uncooked')
-      .attr('src', 'images_minecraft/' + currentRecipe[0][rotation] + '.png')
-      .attr('alt', findItem(currentRecipe[0][rotation])[1]);
+      .attr({
+        'src': 'images_minecraft/' + item[0] + '.png',
+        'alt': item[1],
+        'id': 'item-' + item[0],
+        'title': item[1]
+      });
       
     if (currentRecipe[0].length - 1 <= rotation) {
       rotation = 0;
@@ -170,7 +177,7 @@
     }
   }
 
-  $('#search input').on('keyup', function (e) {
+  $('#search input').on('keyup', function () {
     search = $(this).val();
     regular = new RegExp(search, 'i');
     $('#itemlist ul').empty();
@@ -184,7 +191,7 @@
     return false;
   });
 
-  $('#itemtype a').on('click', function (e) {    
+  $('#itemtype a').on('click', function () {
     itemtype = $(this).attr('id');
       
     $('#itemtype a').css('font-weight', 'normal');
@@ -196,15 +203,15 @@
     return false;
   });
 
-  $('#sortby a').on('click', function (e) {      
+  $('#sortby a').on('click', function () {
       $('#sortby a').css('font-weight', 'normal');
       $(this).css('font-weight', 'bold');
       $('#itemlist ul').empty();
       currentItems = null;
       
-      if ($(this).attr('id') == '0') {
+      if ($(this).attr('id') === '0') {
         currentItems = idItems;
-      } else if ($(this).attr('id') == '1') {
+      } else if ($(this).attr('id') === '1') {
         currentItems = alphaItems;
       }
       drawItemList();
@@ -229,17 +236,19 @@
     $('#hideme, .content').show();
   }
 
-  function itemClick (e) {
-    e.preventDefault();
+  function itemClick () {
     craft($(this).attr('id').substr(5));
   }
 
   function craft (id) {
     var item = findItem(id);
-    
+
+    $('#items ul li').removeClass("clicked");
+    $('#item-' + id).addClass("clicked");
+
     window.location.hash = id;
     currentRecipe = allRecipes[id];
-    
+
     if (small) {isSmall();}
     clearTable();
     
@@ -270,7 +279,7 @@
         .attr('id', id)
         .attr('id', item[0]);
         
-      if (item[3] != '1') {
+      if (item[3] !== '1') {
         $('#crafted span').append(item[3]);
       }
       switchRecipes();

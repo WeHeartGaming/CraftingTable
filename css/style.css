@@ -48,10 +48,10 @@ header .btn {
 }
 
 #search input {
-  background: #4a4a4a;
-  border-width: 0 0 0 1px;
+  background: #fff;
+  border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: #111;
+  border-color: #bbb;
   display: block;
   width: 100%;
   padding: 20px 20px;
@@ -62,7 +62,7 @@ header .btn {
 }
 
 #search input::-webkit-input-placeholder {
-  color: #fff;
+  color: #666;
 }
 
 .content {
@@ -215,6 +215,10 @@ header .btn {
   border-bottom: 1px solid #eee;
   line-height: 30px;
   cursor: pointer;
+}
+
+#itemlist ul li.clicked {
+  background-color: #F0F7FD;
 }
 
 #itemlist ul li img {
