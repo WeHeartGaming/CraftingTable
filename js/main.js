@@ -101,10 +101,10 @@
         // WARNING: this is slow
         if (itemtype == currentItems[i][2]) {
           $('#itemlist ul')
-            .append('<li class="' + type + '" class="crafted" id="' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
+            .append('<li class="' + type + '" class="crafted" id="item-' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
         } else if (itemtype == '0') {
           $('#itemlist ul')
-            .append('<li class="' + type + '" id="' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
+            .append('<li class="' + type + '" id="item-' + currentItems[i][0] + '"><img src="images_minecraft/' + currentItems[i][0] + '.png" alt="' + currentItems[i][1] + '" />' + currentItems[i][1] + ' <span>(id: ' + currentItems[i][0] + ')</span></li>');
         }
       }
     }
@@ -231,7 +231,7 @@
 
   function itemClick (e) {
     e.preventDefault();
-    craft($(this).attr('id'));
+    craft($(this).attr('id').substr(5));
   }
 
   function craft (id) {
