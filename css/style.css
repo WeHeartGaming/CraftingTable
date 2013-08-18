@@ -1,5 +1,4 @@
-*
-{
+* {
 	font-family: 'Open Sans',sans-serif;
 	font-size: 100%;
 }
@@ -77,11 +76,11 @@ header
 		margin-bottom: 20px;
 		display: none;
 	}
-#info
-{
+#info {}
+#no-recipe {
+  display: none;
 }
-#hideme
-{
+#hideme {
 	padding-top: 20px;
 	clear: left;
 }
@@ -241,7 +240,6 @@ header
 	background: #C6C6C6;
 	padding: 20px;
 	position: relative;
-	border-radius: 5px;
 }
 .white
 {
