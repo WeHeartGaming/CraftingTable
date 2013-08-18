@@ -41,7 +41,6 @@
       return false;
     });
     $('#close').on('click', function (e) {
-      console.log('#close');
       $('#info').hide();
       if (small) {
         $('.content').hide();
