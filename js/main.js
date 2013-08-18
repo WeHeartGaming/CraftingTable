@@ -51,18 +51,30 @@
       return false;
     });
 
-    // Responsible design (css?)
-    if ($('body').width() < 768) {
-      small = true;
-      $('#items-container').hide();
-      $('#hideme').hide();
-    }
-
     $(window)
-      .on('resize', resizeWindow)
+      .on('resize', onWindowResize)
       .on('hashchange', onHashChange);
-    resizeWindow();
+      
+    onWindowResize();
   });
+  
+  function onWindowResize() {
+    // Responsible design (css?)
+    small = $('body').width() < 768;
+    if (small) {
+      if ($('#furnace .cooked').attr('id') != '0' || $('#bench #crafted img').attr('id') != '0') {
+        $('#items-container').hide();
+      } else {
+        $('#items-container').show();
+      }
+    } else {
+      $('#items-container').show();
+      $('.content').show();
+    }
+    $('#content').css('height', '0px');
+    var listheight = $(window).height() - offset;
+    $('#content').css('height', listheight + 'px');
+  }
   
   function onHashChange () {
     var hash = window.location.hash.substring(1);
@@ -70,6 +82,7 @@
       craft(hash);
     } else {
       $('#info').show();
+      if (small) {isSmall();}
       $('#no-recipe, #bench, #furnace, #hideme').hide();
     }
   }
@@ -135,7 +148,7 @@
             'src': 'images_minecraft/0.png',
             'id': '0',
             'alt': 'air'
-          }).removeClass('crafted cooked')
+          }).removeClass('crafted cooked');
       }
     }
     
@@ -228,7 +241,7 @@
     window.location.hash = id;
     currentRecipe = allRecipes[id];
     
-    if (small) { isSmall();}
+    if (small) {isSmall();}
     clearTable();
     
     $('#info').hide();
@@ -270,23 +283,5 @@
       $('#no-recipe, #hideme').show()
         .find('h2').text(item[1]);
     }
-  }
-
-  function resizeWindow() {
-    if ($('body').width() >= 768) {
-      small = false;
-      $('#items-container').show();
-      $('.content').show();
-    } else {
-      small = true;
-      if ($('#furnace .cooked').attr('id') != '0' || $('#bench #crafted img').attr('id') != '0') {
-        $('#items-container').hide();
-      } else {
-        $('#items-container').show();
-      }
-    }
-    $('#content').css('height', '0px');
-    var listheight = $(window).height() - offset;
-    $('#content').css('height', listheight + 'px');
   }
 }());
