@@ -42,19 +42,9 @@
 					<h2>Welcome!</h2>
 					<p>Search for and/or click on an item for it to show the recipe!</p>
 					<p>
-						(00:00 12.08.2013)
-						<br>
-						Updated:
+						Planned:
 						<ul>
-							<li>Fixed the layout for Crafting table and Furnace</li>
-							<li>Added the amount of items you get from crafting.(Just need to update the item list now)</li>
-						</ul>
-						Todo:
-						<ul>
-							<li>Add all amounts to items.</li>
-							<li>Add all recipes</li>
-							<li>Improve the design.</li>
-							<li>Add options (Get more info on item from the wiki)</li>
+							<li>Url to recipes</li>
 						</ul>
 					</p>
 				</div>
@@ -92,7 +82,8 @@
 		</div>
 	</div>
 	<footer>
-		<div class="container">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> using <a href="http://getbootstrap.com/">Bootstrap</a> &copy; 2013</div>
+		<div class="container hidden-sm">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> using <a href="http://getbootstrap.com/">Bootstrap</a> &copy; 2013</div>
+		<div class="container visible-sm">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> &copy; 2013</div>
 	</footer>
 	<script type="text/javascript">
 		var currentItems = {};
@@ -150,6 +141,7 @@
 		}
 
 		$(document).ready(function(){
+			
 			$.get("/minecraft_items.json", function(data)
 			{
 				currentItems = data;
@@ -160,13 +152,17 @@
 				}
 
 				quick_sort(alphaItems, 1);
-
 				drawItemList();
 			}, "json");
-
+			
 			$.get("/minecraft_recipes.json", function(data)
 			{
 				allRecipes = data;
+				var hash = window.location.hash.substring(1);
+				if(hash !== "")
+				{
+					craft(hash);
+				}
 			}, "json");
 
 			resizeWindow();
@@ -306,76 +302,8 @@
 			$("#hideme").show();
 		}
 
-		function clickBench()
-		{
-			var IID = $(this).attr("id");
-			var item = findItem(IID);
-
-			$("#info").hide();
-
-			if(IID == "0")
-			{
-				return;
-			}
-
-			clearTable();
-			$("#furnace").hide();
-			$("#bench").show();
-			$("#hide").show();
-			$("#bench #crafted img").attr("src", '/images_minecraft/'+IID+'.png').attr("id", IID).attr("id", item[0]);
-
-			if(small)
-			{
-				isSmall();
-			}
-
-			if (item[3] != "1")
-			{
-				$("#bench #crafted span").append(item[3]);
-			}
-
-			currentRecipe = allRecipes[IID];
-
-			switchRecipes();
-			
-			if(currentRecipe.length > 1)
-			{
-				crafting = setInterval(switchRecipes, 2000);
-			}
-		}
-
-		function clickFurnace()
-		{
-			var IID = $(this).attr("id");
-			var item = findItem(IID);
-
-			currentRecipe = allRecipes[IID];
-
-			$("#info").hide();
-
-			clearTable();
-
-			$("#bench").hide();
-			$("#furnace").show();
-			$("#hide").show();
-			if(small)
-			{
-				isSmall();
-			}
-
-			$("#furnace img.cooked").attr("src", '/images_minecraft/'+IID+'.png').attr("alt", item[1]).attr("id", item[0]);
-
-			switchFurnace();
-			if(currentRecipe[0].length > 1)
-			{
-				cooking = setInterval(switchFurnace, 2000);
-			}
-		}
-
-		$("#items #itemlist ul").on("click", "li.crafted", clickBench);
-		$("#bench").on("click", "img.cooked", clickFurnace);
-		$("#bench").on("click", "img.crafted", clickBench);
-		$("#items #itemlist ul").on("click", "li.cooked", clickFurnace);
+		$("#items #itemlist ul").on("click", "li", itemClick);
+		$("#bench").on("click", "img.cooked", itemClick);
 
 		$("#hideme").on("click", function(e){
 			e.preventDefault();
@@ -394,6 +322,67 @@
 			}
 			$("#items-container").show();
 		});
+		function itemClick(e)
+		{
+			e.preventDefault();
+			craft($(this).attr("id"));
+		}
+		function craft(id)
+		{
+			var item = findItem(id);
+
+			if(item[2] === "0")
+			{
+				return;
+			}
+
+			window.location.hash = id;
+
+			currentRecipe = allRecipes[id];
+
+			if(small)
+			{
+				isSmall();
+			}
+
+			clearTable();
+
+			$("#info").hide();
+
+			if(item[2] === "2")
+			{
+				$("#bench").hide();
+				$("#furnace").show();
+				$("#hide").show();
+
+				$("#furnace img.cooked").attr("src", '/images_minecraft/'+id+'.png').attr("alt", item[1]).attr("id", item[0]);
+
+				switchFurnace();
+				if(currentRecipe[0].length > 1)
+				{
+					cooking = setInterval(switchFurnace, 2000);
+				}
+			}
+			else if(item[2] === "1")
+			{
+				$("#furnace").hide();
+				$("#bench").show();
+				$("#hide").show();
+				$("#bench #crafted img").attr("src", '/images_minecraft/'+id+'.png').attr("id", id).attr("id", item[0]);
+
+				if (item[3] != "1")
+				{
+					$("#bench #crafted span").append(item[3]);
+				}
+
+				switchRecipes();
+				
+				if(currentRecipe.length > 1)
+				{
+					crafting = setInterval(switchRecipes, 2000);
+				}
+			}
+		}
 
 		function resizeWindow()
 		{
