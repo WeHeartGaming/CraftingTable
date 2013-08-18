@@ -1,0 +1,263 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+body {
+  background: #ddd;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+a {
+  color: #0997D5;
+}
+
+header {
+  height: 60px;
+  background: #2A2A2A;
+}
+
+header h1 {
+  padding: 0 0 0 20px;
+  margin: 0;
+  line-height: 60px;
+  color: #ddd;
+  font-size: 100%;
+}
+
+header #logo {
+  height: 60px;
+  float: left;
+}
+
+header #logo a {
+  display: block;
+  height: 60px;
+  width: auto;
+  padding: 14px 0;
+}
+
+header #logo a img {
+  height: 32px;
+}
+
+header .btn {
+  margin-top: 12px;
+}
+
+#search input {
+  background: #4a4a4a;
+  border-width: 0 0 0 1px;
+  border-style: solid;
+  border-color: #111;
+  display: block;
+  width: 100%;
+  padding: 20px 20px;
+  line-height: 30px;
+  height: 60px;
+  font-size: 150%;
+  color: #ccc;
+}
+
+#search input::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+  height: 100%;
+  overflow: auto;
+}
+
+.content #url {
+  margin-bottom: 20px;
+  display: none;
+}
+
+#info {
+}
+
+#no-recipe {
+  display: none;
+}
+
+#hideme {
+  padding-top: 20px;
+  clear: left;
+}
+
+#bench {
+  width: 370px;
+  display: none;
+}
+
+#bench h1,
+  #furnace h1 {
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+
+#bench .crafted, #bench .slot, #furnace img.slot {
+  float: left;
+  padding: 2px;
+  background: #8D8D8D;
+  width: 48px;
+  height: 48px;
+  margin: 0 10px 10px 0;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+
+#bench img {
+  float: left;
+}
+
+#bench #crafted {
+  margin-left: 20px !important;
+  position: relative;
+}
+
+#bench #crafted span {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 110%;
+  color: #fff;
+  text-shadow: 1px 1px 0px #222;
+}
+
+#crafted img,
+#bench div img,
+#furnace div img {
+  width: 100%;
+}
+
+#furnace {
+  display: none;
+  width: 250px;
+}
+
+#bench .arrow, #furnace .arrow {
+  float: left;
+  padding-right: 20px;
+}
+
+#furnace .fire {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+#furnace #uncooked {
+}
+
+#furnace #cooked {
+}
+
+#itemtype, #sortby {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+#sortby {
+  top: 30px;
+}
+
+#itemtype a, #sortby a {
+  color: #0997D5;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+#itemtype a:first-of-type, #sortby a:first-of-type {
+  margin: 0;
+  font-weight: bold;
+}
+
+#left, #items-container {
+  height: 100%;
+}
+
+#items {
+  background: #fff;
+  height: 100%;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+#itemlist {
+  overflow: auto;
+  height: 100%;
+}
+
+#itemlist ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#itemlist ul li {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+#itemlist ul li img {
+  height: 24px;
+  max-width: 34px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+#itemlist ul li span {
+  font-size: 12px;
+}
+
+.thetable {
+  float: left;
+  border-top: 4px solid #fff;
+  border-left: 4px solid #fff;
+  border-right: 4px solid #373737;
+  border-bottom: 4px solid #373737;
+  background: #C6C6C6;
+  padding: 20px;
+  position: relative;
+}
+
+.white {
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 1px 20px 20px 20px;
+}
+
+footer {
+  clear: both;
+  color: #ccc;
+  background: #252525;
+  margin-top: 20px;
+  padding: 10px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.clear {
+  clear: left;
+}
