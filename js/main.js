@@ -34,15 +34,14 @@
     // Attach event handlers
     $('#itemlist ul').on('click', 'li', itemClick);
     $('#bench').on('click', 'img.cooked', itemClick);
-    $('#hideme').on('click', function (e) {
-      $('#items-container')
-        .show();
-      $('.content')
-        .hide();
+    $('#hideme a').on('click', function (e) {
+      $('#items-container').show();
+      $('.content').hide();
         
       return false;
     });
     $('#close').on('click', function (e) {
+      console.log('#close');
       $('#info').hide();
       if (small) {
         $('.content').hide();
@@ -55,7 +54,7 @@
     // Responsible design (css?)
     if ($('body').width() < 768) {
       small = true;
-      $('#items-container\t').hide();
+      $('#items-container').hide();
       $('#hideme').hide();
     }
 
