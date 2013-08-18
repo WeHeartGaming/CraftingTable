@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
 	<title>The Crafting Table | Find recipes faster</title>
-	<link rel="stylesheet" href="/style/bootstrap.min.css">
-	<link href="/style.css" media="all" rel="stylesheet" type="text/css" />
-	<script src="/jquery.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/gfx/craftlogo.png" rel="shortcut icon" type="image/png" />
-	<script src="/js/quicksort.js" type="text/javascript"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+  <link  rel="shortcut icon" href="gfx/craftlogo.png" type="image/png" />
 	<script>
 	/* Google Analytics */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
 		ga('create', 'UA-3047952-10', 'whg.no');
 		ga('send', 'pageview');
@@ -24,7 +23,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-2 col-sm-7 col-lg-8">
-					<div id="logo"><a href="/"><img src="/gfx/craftlogo.png" alt="Logo" /></a></div>
+					<div id="logo"><a href="#"><img src="gfx/craftlogo.png" alt="Logo" /></a></div>
 					<h1 class="pull-left visible-lg">Minecraft Item list and Crafting guide</h1>
 					<a href="https://github.com/WeHeartGaming/CraftingTable/issues" class="btn btn-warning pull-right hidden-sm">Issues or ideas?</a>
 				</div>
@@ -45,7 +44,7 @@
 					<p>
 						New:
 						<ul>
-							<li>Url to recipes</li>
+							<li>URL to recipes</li>
 							<li>Responsive: Works on mobile, tablet and desktop</li>
 						</ul>
 						Planned:
@@ -55,30 +54,44 @@
 						</ul>
 					</p>
 				</div>
+        
+				<div id="no-recipe">
+					<h2>Insert block name here</h2>
+					<p>This block doesn't have a crafting recipe.</p>
+				</div>
+        
 				<div id="bench" class="thetable">
 					<h1>Crafting Table</h1>
-					<img class="b0 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b1 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b2 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b3 slot clear" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b4 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b5 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="arrow" src="/gfx/arrow.png" alt="arrow" />
-					<div id="crafted" class="slot"><img src="/images_minecraft/0.png" alt="air" id="0" /><span></span></div>
-					<img class="b6 slot clear" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b7 slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="b8 slot" src="/images_minecraft/0.png" alt="air" id="0" />
+					<img class="b0 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b1 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b2 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b3 slot clear" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b4 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b5 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="arrow" src="gfx/arrow.png" alt="arrow" />
+					<div id="crafted" class="slot"><img src="images_minecraft/0.png" alt="air" id="0" /><span></span></div>
+					<img class="b6 slot clear" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b7 slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="b8 slot" src="images_minecraft/0.png" alt="air" id="0" />
 				</div>
+        
 				<div id="furnace" class="thetable">
 					<h1>Furnace</h1>
-					<img class="slot uncooked" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="arrow" src="/gfx/arrow.png" alt="arrow" />
-					<img class="slot cooked" class="slot" src="/images_minecraft/0.png" alt="air" id="0" />
-					<img class="fire" src="/gfx/fire.png" alt="fire" />
-					<img class="slot clear" src="/images_minecraft/263-0.png" alt="air" />
+					<img class="slot uncooked" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="arrow" src="gfx/arrow.png" alt="arrow" />
+					<img class="slot cooked" class="slot" src="images_minecraft/0.png" alt="air" id="0" />
+					<img class="fire" src="gfx/fire.png" alt="fire" />
+					<img class="slot clear" src="images_minecraft/263-0.png" alt="air" />
 				</div>
-				<div id="hideme"><div id="url">Url:<br /><input class="url" type="text" value="" /></div><a href="#" class="btn btn-danger visible-sm">Item list</a></div>
+        
+				<div id="hideme">
+          <div id="url">URL:<br />
+          <input class="url col-sm-5 col-lg-4" type="text" value="" />
+        </div>
+        
+        <a href="#" class="btn btn-danger visible-sm">Item list</a></div>
 			</div>
+      
 			<div id="items-container" class="col-sm-5 col-lg-4">
 				<div id="items">
 					<div id="itemtype"><a href="#" id="0">All</a><a href="#" id="1">Crafted</a><a href="#" id="2">Cooked</a></div>
@@ -92,334 +105,9 @@
 		<div class="container hidden-sm">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> using <a href="http://getbootstrap.com/">Bootstrap</a> &copy; 2013</div>
 		<div class="container visible-sm">Created by <a href="http://weheartgaming.com">WeHeartGaming</a> &copy; 2013</div>
 	</footer>
-	<script type="text/javascript">
-		var currentItems = {};
-		var idItems = {};
-		var alphaItems = {};
-
-		var allRecipes = {};
-
-		var currentRecipe = {};
-
-		var crafting = null;
-		var cooking = null;
-		var rotation = 0;
-
-		var itemtype = "0";
-
-		var search = "";
-		var regular = new RegExp("", "i");
-
-		var offset = 60;
-
-		var small = false;
-
-		function drawItemList()
-		{
-			for(var i in currentItems)
-			{
-				if(regular.test(currentItems[i][1]))
-				{
-					var type = null;
-
-					if(currentItems[i][2] == "1")
-					{
-						type = "crafted";
-					}
-					else if(currentItems[i][2] == "2")
-					{
-						type = "cooked";
-					}
-					else
-					{
-						type = "na";
-					}
-
-					if(itemtype == currentItems[i][2])
-					{
-						$("#itemlist ul").append('<li class="'+type+'" class="crafted" id="'+currentItems[i][0]+'"><img src="/images_minecraft/'+currentItems[i][0]+'.png" alt="'+currentItems[i][1]+'" />'+currentItems[i][1]+' <span>(id: '+currentItems[i][0]+')</span></li>');
-					}
-					else if(itemtype == "0")
-					{
-						$("#itemlist ul").append('<li class="'+type+'" id="'+currentItems[i][0]+'"><img src="/images_minecraft/'+currentItems[i][0]+'.png" alt="'+currentItems[i][1]+'" />'+currentItems[i][1]+' <span>(id: '+currentItems[i][0]+')</span></li>');
-					}
-				}
-			}
-		}
-
-		$(document).ready(function(){
-			
-			$.get("/minecraft_items.json", function(data)
-			{
-				currentItems = data;
-				alphaItems = data;
-
-				for (var i = 0, len = currentItems.length; i < len; i++) {
-				    idItems[i] = currentItems[i];
-				}
-
-				quick_sort(alphaItems, 1);
-				drawItemList();
-			}, "json");
-			
-			$.get("/minecraft_recipes.json", function(data)
-			{
-				allRecipes = data;
-				var hash = window.location.hash.substring(1);
-				if(hash !== "")
-				{
-					craft(hash);
-				}
-			}, "json");
-
-			resizeWindow();
-			if($("body").width() < 768)
-			{
-				small = true;
-				$("#items-container	").hide();
-				$("#hideme").hide();
-			}
-		});
-
-		function findItem(id)
-		{
-			for(var i in currentItems)
-			{
-				if(currentItems[i][0] == id)
-				{
-					return currentItems[i];
-				}
-			}
-		}
-
-		function switchRecipes()
-		{
-			for(var i = 0; i <= 8; i++)
-			{
-				if(currentRecipe[rotation][i] != 0)
-				{
-					var item = findItem(currentRecipe[rotation][i]);
-					var theClass = "";
-					if(item[2] == "1")
-					{
-						theClass = "crafted";
-					}
-					else if(item[2] == "2")
-					{
-						theClass = "cooked";
-					}
-
-					$("#bench img.b"+i).attr('src', '/images_minecraft/'+currentRecipe[rotation][i]+'.png').attr('id', currentRecipe[rotation][i]).attr("alt", item[1]).attr("title", item[1]).removeClass("crafted").removeClass("cooked").addClass(theClass);
-				} else {
-					$("#bench img.b"+i).attr('src', '/images_minecraft/0.png').attr('id', "0").attr("alt", "air").removeClass("crafted").removeClass("cooked");
-				}
-			}
-			if(currentRecipe.length -1 <= rotation)
-			{
-				rotation = 0;
-			}
-			else
-			{
-				rotation = rotation + 1;
-			}
-		}
-		function switchFurnace()
-		{
-			$("#furnace img.uncooked").attr("src", '/images_minecraft/'+currentRecipe[0][rotation]+'.png').attr("alt", findItem(currentRecipe[0][rotation])[1]);
-
-			if(currentRecipe[0].length -1 <= rotation)
-			{
-				rotation = 0;
-			}
-			else
-			{
-				rotation = rotation + 1;
-			}
-		}
-
-		$("#search input").on("keyup", function(e){
-			e.preventDefault();
-			search = $(this).val();
-			regular = new RegExp(search, "i");
-			$("#itemlist ul").empty();
-			if(small)
-			{
-				clearTable();
-				$(".content").hide();
-				$("#items-container").show();
-			}
-
-
-			drawItemList();
-		});
-		$("#itemtype a").on("click", function(e){
-			e.preventDefault();
-
-			itemtype = $(this).attr("id");
-			$("#itemtype a").css("font-weight", "normal");
-			$(this).css("font-weight", "bold");
-
-			$("#itemlist ul").empty();
-
-			drawItemList();
-		});
-
-		$("#sortby a").on("click", function(e){
-			e.preventDefault();
-
-			$("#sortby a").css("font-weight", "normal");
-			$(this).css("font-weight", "bold");
-
-
-			$("#itemlist ul").empty();
-
-			currentItems = null;
-
-			if($(this).attr("id") == "0")
-			{
-				currentItems = idItems;
-			}
-			else if($(this).attr("id") == "1")
-			{
-				currentItems = alphaItems;
-			}
-
-			drawItemList();
-
-		});
-
-		function clearTable()
-		{
-			rotation = 0;
-			$("#bench img.slot").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
-			$("#bench #crafted img").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
-			$("#furnace img.uncooked").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
-			$("#furnace img.cooked").attr("src", '/images_minecraft/0.png').attr("id", "0").attr("alt", "air");
-			$("#bench #crafted span").empty();
-
-			clearInterval(crafting);
-			clearInterval(cooking);
-		}
-
-		function isSmall()
-		{
-
-			$("#items-container").hide();
-			$(".content").show();
-			$("#hideme").show();
-		}
-
-		$("#items #itemlist ul").on("click", "li", itemClick);
-		$("#bench").on("click", "img.cooked", itemClick);
-
-		$("#hideme").on("click", function(e){
-			e.preventDefault();
-
-			$("#items-container").show();
-			$(".content").hide();
-		});
-
-		$("#close").on("click", function(e) {
-			e.preventDefault();
-
-			$("#info").hide();
-			if(small)
-			{
-				$(".content").hide();
-			}
-			$("#items-container").show();
-		});
-		function itemClick(e)
-		{
-			e.preventDefault();
-			craft($(this).attr("id"));
-		}
-		function craft(id)
-		{
-			var item = findItem(id);
-
-			if(item[2] === "0")
-			{
-				return;
-			}
-
-			window.location.hash = id;
-
-			currentRecipe = allRecipes[id];
-
-			if(small)
-			{
-				isSmall();
-			}
-
-			clearTable();
-
-			$("#info").hide();
-			$(".content #url").show();
-
-			$(".content input").attr("value", "http://craft.whg.no/#"+id);
-
-			if(item[2] === "2")
-			{
-				$("#bench").hide();
-				$("#furnace").show();
-				$("#hide").show();
-
-				$("#furnace img.cooked").attr("src", '/images_minecraft/'+id+'.png').attr("alt", item[1]).attr("id", item[0]);
-
-				switchFurnace();
-				if(currentRecipe[0].length > 1)
-				{
-					cooking = setInterval(switchFurnace, 2000);
-				}
-			}
-			else if(item[2] === "1")
-			{
-				$("#furnace").hide();
-				$("#bench").show();
-				$("#hide").show();
-				$("#bench #crafted img").attr("src", '/images_minecraft/'+id+'.png').attr("id", id).attr("id", item[0]);
-
-				if (item[3] != "1")
-				{
-					$("#bench #crafted span").append(item[3]);
-				}
-
-				switchRecipes();
-				
-				if(currentRecipe.length > 1)
-				{
-					crafting = setInterval(switchRecipes, 2000);
-				}
-			}
-		}
-
-		function resizeWindow()
-		{
-			if($("body").width() >= 768)
-			{
-				$("#items-container").show();
-				$(".content").show();
-				small = false;
-			}
-			else
-			{
-				small = true;
-				if($("#furnace .cooked").attr("id") != "0" || $("#bench #crafted img").attr("id") != "0")
-				{
-					$("#items-container").hide();
-				}
-				else
-				{
-					$("#items-container").show();
-				}
-			}
-			$("#content").css("height", "0px");
-			var listheight = $(window).height() - offset;
-			$("#content").css("height", listheight+"px");
-		}
-
-		$(window).on("resize", resizeWindow);
-	</script>
+  
+  <script src="js/jquery.js"></script>
+  <script src="js/quicksort.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
