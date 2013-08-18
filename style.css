@@ -72,6 +72,11 @@ header
 	height: 100%;
 	overflow: auto;
 }
+	.content #url
+	{
+		margin-bottom: 20px;
+		display: none;
+	}
 #info
 {
 }

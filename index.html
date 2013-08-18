@@ -42,9 +42,15 @@
 					<h2>Welcome!</h2>
 					<p>Search for and/or click on an item for it to show the recipe!</p>
 					<p>
-						Planned:
+						New:
 						<ul>
 							<li>Url to recipes</li>
+							<li>Responsive: Works on mobile, tablet and desktop</li>
+						</ul>
+						Planned:
+						<ul>
+							<li>More info about items from the Wiki.</li>
+							<li>Improvements to the overall design.</li>
 						</ul>
 					</p>
 				</div>
@@ -70,7 +76,7 @@
 					<img class="fire" src="/gfx/fire.png" alt="fire" />
 					<img class="slot clear" src="/images_minecraft/263-0.png" alt="air" />
 				</div>
-				<div id="hideme"><a href="#" class="btn btn-danger visible-sm">Item list</a></div>
+				<div id="hideme"><div id="url">Url:<br /><input class="url" type="text" value="" /></div><a href="#" class="btn btn-danger visible-sm">Item list</a></div>
 			</div>
 			<div id="items-container" class="col-sm-5 col-lg-4">
 				<div id="items">
@@ -348,6 +354,9 @@
 			clearTable();
 
 			$("#info").hide();
+			$(".content #url").show();
+
+			$(".content input").attr("value", "http://craft.whg.no/#"+id);
 
 			if(item[2] === "2")
 			{
