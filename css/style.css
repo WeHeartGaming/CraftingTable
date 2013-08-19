@@ -58,7 +58,7 @@ header .btn {
   line-height: 30px;
   height: 60px;
   font-size: 150%;
-  color: #ccc;
+  color: #666;
 }
 
 #search input::-webkit-input-placeholder {
@@ -218,7 +218,7 @@ header .btn {
 }
 
 #itemlist ul li.clicked {
-  background-color: #F0F7FD;
+  background-color: #D0E3F0;
 }
 
 #itemlist ul li img {

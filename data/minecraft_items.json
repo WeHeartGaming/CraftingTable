@@ -95,7 +95,7 @@
 	["74", "Glowing Redstone Ore", "0"],
 	["75", "Redstone Torch", "1", "1"],
 	["77", "Stone Button", "1", "1"],
-	["78", "Snow", "0"],
+	["78", "Snow", "1", "6"],
 	["79", "Ice", "0"],
 	["80", "Snow Block", "1", "1"],
 	["81", "Cactus", "0"],

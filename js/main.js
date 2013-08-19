@@ -53,7 +53,9 @@
 
     $(window)
       .on('resize', onWindowResize)
-      .on('hashchange', onHashChange);
+      .on('hashchange', onHashChange)
+      .on('keyup', onKeyUp)
+      .on('keydown', onKeyDown);
       
     onWindowResize();
   });
@@ -85,6 +87,42 @@
       if (small) {isSmall();}
       $('#no-recipe, #bench, #furnace, #hideme').hide();
     }
+  }
+
+  function onKeyUp(e)
+  {
+    var code = e.keyCode || e.which;
+    var itemID = 0;
+    var id = 0;
+    if(code === 38)
+    {
+      id = $("#itemlist ul").find('li.clicked').index() + 1;
+      if(id - 1 > 0)
+      {
+        $("#itemlist ul li:nth-child("+ id +")").removeClass("clicked");
+        id = id - 1;
+        $("#itemlist").scrollTop($("#itemlist").scrollTop() - 42);
+        $("#itemlist ul li:nth-child("+ id +")").addClass("clicked");
+        itemID = $("#itemlist ul li.clicked").attr("id").substring(5);
+        craft(itemID);
+      }
+    }else if(code === 40) {
+      id = $("#itemlist ul").find('li.clicked').index() + 1;
+      if(id + 1 < currentItems.length) {
+        $("#itemlist ul li:nth-child("+ id +")").removeClass("clicked");
+        id = id + 1;
+        $("#itemlist").scrollTop($("#itemlist").scrollTop() + 42);
+        $("#itemlist ul li:nth-child("+ id +")").addClass("clicked");
+        itemID = $("#itemlist ul li.clicked").attr("id").substring(5);
+        craft(itemID);
+      }
+    }
+  }
+
+  function onKeyDown(e)
+  {
+    var code = e.keyCode || e.which;
+    if(code === 38 || code === 40) { e.preventDefault(); }
   }
 
   function drawItemList() {
