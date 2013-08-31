@@ -217,13 +217,15 @@ header .btn {
 
 #itemlist ul li {
   padding: 5px;
-  border-bodttom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   line-height: 30px;
   cursor: pointer;
+  color: #555;
 }
 
 #itemlist ul li.clicked {
-  background-color: #D0E3F0;
+  box-shadow: 0 0px 5px #92c2e0 inset;
+  color: #238BFF;
 }
 
 #itemlist ul li img {
